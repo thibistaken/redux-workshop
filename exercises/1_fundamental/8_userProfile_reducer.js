@@ -21,6 +21,8 @@ let reducer = function(state, action) {
       return { ...state, lastName: action.lastName };
     case "setAge":
       return { ...state, age: action.age };
+    default:
+      return state;
   }
 };
 // Insert your code before this line
