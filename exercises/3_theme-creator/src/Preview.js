@@ -1,23 +1,37 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { connect } from "react-redux";
+import Generator from "./Generator.js";
 
 class Preview extends Component {
   render = () => {
-    let myFontStyle = "normal"
     let myStyle = {
       height: "100vh",
       width: "50vh",
       padding: "30px",
-      fontStyle: myFontStyle
-    }
+      fontStyle: this.props.fontStyle,
+      fontFamily: this.props.fontFamily,
+      color: this.props.color,
+      fontWeight: this.props.fontWeight,
+      text: this.props.text
+    };
     return (
       <div style={myStyle}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sollicitudin sem et ante luctus sodales. Vivamus mi eros, fringilla et felis vitae, efficitur efficitur justo. Praesent dolor mauris, ultrices vel justo ac, sagittis
-        </div>
+        <Generator></Generator>
+        {this.props.text}
+      </div>
     );
-  }
+  };
 }
 
+const mapStateToProps = state => {
+  return {
+    fontStyle: state.fontStyle,
+    fontFamily: state.fontFamily,
+    color: state.color,
+    fontWeight: state.fontWeight,
+    text: state.text
+  };
+};
 
-
-export default Preview;
+export default connect(mapStateToProps)(Preview);
